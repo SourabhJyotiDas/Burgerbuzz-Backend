@@ -1,5 +1,5 @@
 import User  from "../models/user.js";
-import Order  from "../models/order.js";
+import Order  from "../models/Order.js";
 import cloudinary  from "cloudinary";
 
 

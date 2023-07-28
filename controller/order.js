@@ -1,4 +1,4 @@
-import Order from "../models/order.js";
+import Order from "../models/Order.js";
 import Payment from "../models/Payment.js";
 import Razorpay from "razorpay";
 const instance = new Razorpay({

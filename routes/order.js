@@ -1,7 +1,7 @@
 import { createOrder, getMYOrders, getOrderDetails, getAdminOrders, processOrder, placeOrderOnline, paymentVerification } from "../controller/order.js";
 
-import  express  from "express";
-import  { isAuthenticated, isAdmin } from "../middlewares/Auth.js";
+import express from "express";
+import { isAuthenticated, isAdmin } from "../middlewares/Auth.js";
 
 
 const router = express.Router();
