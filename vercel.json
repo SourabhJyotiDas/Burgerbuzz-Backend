@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "burger-buzz-backend",
+  "name": "portfolio",
   "builds": [{ "src": "server.js", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "./server.js" }]
+  "routes": [{ "src": "/(.*)", "dest": "/server.js" }]
 }
