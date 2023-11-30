@@ -1,6 +1,6 @@
-import User  from "../models/user.js";
-import Order  from "../models/Order.js";
-import cloudinary  from "cloudinary";
+import User from "../models/user.js";
+import Order from "../models/Order.js";
+import cloudinary from "cloudinary";
 
 
 export const registerUser = async (req, res) => {
@@ -18,11 +18,11 @@ export const registerUser = async (req, res) => {
 
       const myCloud = await cloudinary.v2.uploader.upload(avatar, {
          folder: "FightClub-avatars",
-       });
+      });
 
       user = await User.create({
          name, email, password,
-          avatar: { public_id: myCloud.public_id, url: myCloud.secure_url },
+         avatar: { public_id: myCloud.public_id, url: myCloud.secure_url },
       })
 
       const token = await user.generateToken();
@@ -30,7 +30,9 @@ export const registerUser = async (req, res) => {
       const options = {
          expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
          httpOnly: true,
-      }
+         secure: true, // Set this to true when using SameSite=None
+         sameSite: "none",
+      };
 
       res.status(201).cookie("token", token, options).json({
          success: true,
@@ -72,7 +74,9 @@ export const loginUser = async (req, res) => {
       const options = {
          expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
          httpOnly: true,
-      }
+         secure: true, // Set this to true when using SameSite=None
+         sameSite: "none",
+      };
 
       res.status(200).cookie("token", token, options).json({
          success: true,
@@ -105,7 +109,12 @@ export const myProfile = async (req, res) => {
 
 export const logout = async (req, res) => {
    try {
-      res.status(200).cookie("token", null, { expires: new Date(Date.now()), httpOnly: true }).json({
+      res.status(200).cookie("token", null, {
+         expires: new Date(Date.now()),
+         httpOnly: true,
+         secure: true,
+         sameSite: "none",})
+         .json({
          Success: true,
          message: "Logout Successfully"
       })
