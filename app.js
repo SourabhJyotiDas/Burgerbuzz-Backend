@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(
    cors({
       credentials: true,
-      origin: "https://burgerbuzz.netlify.app",
+      origin: ["https://burgerbuzz.netlify.app","http://localhost:3000"],
       methods: ["GET", "POST", "PUT", "DELETE"],
    })
 );
